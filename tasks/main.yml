@@ -15,7 +15,7 @@
       - ca-certificates
       - curl
       - software-properties-common
-      - python-pip
+      - python3-pip
     state: present
     update_cache: true
 
