@@ -5,8 +5,8 @@
     name:
       - docker
       - docker-engine
+      - docker.io
     state: absent
-  become: true
 
 - name: Install Docker dependencies
   apt:
@@ -18,48 +18,32 @@
       - python-pip
     state: present
     update_cache: true
-  become: true
 
 - name: Add Docker GPG key
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
     id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
     state: present
-  become: true
 
 - name: Add Docker Repository
   apt_repository:
     repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
     state: present
-  become: true
 
 - name: Install Docker
   apt:
     name: docker-ce
     state: present
     update_cache: true
-  become: true
 
 - name: Add user to Docker group
   user:
-    name: "{{ user.name }}"
+    name: "{{ item }}"
     groups: docker
     append: true
-  notify: "reset ssh connection"
-  become: true
-
-- name: Run handlers
-  meta: flush_handlers
+  with_items: "{{ docker_users }}"
 
 # Required for some Ansible modules
 - name: Install docker-py
   pip:
     name: docker-py
-  become: true
-
-- name: Create a data container
-  docker_container:
-    name: hello-world
-    image: hello-world
-    state: started
-    recreate: true

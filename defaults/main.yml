@@ -1,4 +1,3 @@
 ---
 
-user:
-  name: calvin
+docker_users: []
