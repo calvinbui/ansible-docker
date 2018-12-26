@@ -2,35 +2,36 @@
 
 An Ansible role that installs the latest version of Docker CE on Ubuntu based on the official installation instructions.
 
-Also installs docker-py for other Ansible scripts to run.
-
 ## Requirements
 
-None
+N/A
 
 ## Role Variables
 
-A description of the settable variables for this role should go here, including
-any variables that are in defaults/main.yml, vars/main.yml, and any variables
-that can/should be set via parameters to the role. Any variables that are read
-from other roles and/or the global scope (ie. hostvars, group vars, etc.) should
-be mentioned here as well.
+`docker_users`: a list of users to add to the docker group. They will not be evaluated until a session is created.
 
 ## Dependencies
 
-None
+N/A
 
 ## Example Playbook
 
-```
-- hosts: servers
+```yaml
+- hosts: all
+  become: true
+  pre_tasks:
+    - name: Update apt cache.
+      apt:
+        update_cache: true
+        cache_valid_time: 600
+      changed_when: false
   roles:
-     - role: ansible-docker
+    - role: ansible-docker
 ```
 
 ## License
 
-BSD
+GPLv3
 
 ## Author Information
 
