@@ -15,7 +15,6 @@
       - ca-certificates
       - curl
       - software-properties-common
-      - python3-pip
     state: present
 
 - name: Add Docker GPG key
@@ -41,8 +40,3 @@
     groups: docker
     append: true
   with_items: "{{ docker_users }}"
-
-# Required for some Ansible modules
-- name: Install docker-py
-  pip:
-    name: docker-py
