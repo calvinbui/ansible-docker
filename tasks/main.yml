@@ -17,7 +17,6 @@
       - software-properties-common
       - python3-pip
     state: present
-    update_cache: true
 
 - name: Add Docker GPG key
   apt_key:
@@ -29,12 +28,12 @@
   apt_repository:
     repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
     state: present
+    update_cache: true
 
 - name: Install Docker
   apt:
     name: docker-ce
     state: present
-    update_cache: true
 
 - name: Add user to Docker group
   user:
