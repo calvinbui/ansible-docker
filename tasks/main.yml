@@ -39,4 +39,4 @@
     name: "{{ item }}"
     groups: docker
     append: true
-  with_items: "{{ docker_users }}"
+  loop: "{{ docker_users }}"
