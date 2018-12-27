@@ -16,6 +16,10 @@
       - curl
       - software-properties-common
     state: present
+  register: result
+  until: result is success
+  retries: 5
+  delay: 5
 
 - name: Add Docker GPG key
   apt_key:
@@ -33,6 +37,10 @@
   apt:
     name: docker-ce
     state: present
+  register: result
+  until: result is success
+  retries: 5
+  delay: 5
 
 - name: Add user to Docker group
   user:
