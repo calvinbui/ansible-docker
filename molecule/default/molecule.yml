@@ -10,8 +10,13 @@ platforms:
     image: ubuntu:${UBUNTU_IMAGE_TAG:-latest}
 provisioner:
   name: ansible
+  options:
+    v: true
   lint:
     name: ansible-lint
+  playbooks:
+    prepare: prepare.yml
+    converge: playbook.yml
 scenario:
   name: default
 verifier:
