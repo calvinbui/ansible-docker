@@ -6,6 +6,8 @@
       - docker
       - docker-engine
       - docker.io
+      - containerd
+      - runc
     state: absent
 
 - name: Install Docker dependencies
@@ -15,6 +17,7 @@
       - ca-certificates
       - curl
       - software-properties-common
+      - gnupg-agent
     state: present
   register: result
   until: result is success
@@ -39,7 +42,10 @@
 
 - name: Install Docker
   apt:
-    name: docker-ce
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
     state: present
   register: result
   until: result is success
