@@ -1,4 +1,7 @@
 [![Build Status](https://travis-ci.com/calvinbui/ansible-docker.svg?branch=master)](https://travis-ci.com/calvinbui/ansible-docker)
+![GitHub release](https://img.shields.io/github/release/calvinbui/ansible-docker.svg)
+![Ansible Quality Score](https://img.shields.io/ansible/quality/35858.svg)
+![Ansible Role](https://img.shields.io/ansible/role/d/35858.svg)
 
 # Ansible Docker
 
